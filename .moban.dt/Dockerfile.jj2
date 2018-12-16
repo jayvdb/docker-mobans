@@ -72,7 +72,7 @@ RUN {{ cmd }}
 {% endfor %}
 {% if image.run %}
 {% if image.run.cmd %}
-CMD {{ image.run.cmd.split(' ') }}
+CMD [{% for cmd in image.run.cmd.split(' ') %}"{{ cmd }}"{% if not loop.last %}, {% endif %}{% endfor %}]
 
 {% endif %}
 {% if image.run.workdir %}
